@@ -1,0 +1,59 @@
+import { ThumbsUp } from 'lucide-react'
+import React from 'react'
+import { NavLink, useLoaderData, useNavigate } from 'react-router'
+
+const ArtDetails = () => {
+    const data = useLoaderData()
+    const navigate = useNavigate()
+
+  return (
+     <>
+         <div className='my-21 mx-20 max-sm:mx-5'>
+           <div className='flex gap-10 max-sm:flex-col'>
+                <div className='w-75 h-75'>
+                    <img className='w-75 h-75 rounded-2xl' src={data.image} alt="art image" />
+                </div>
+
+                <div className='flex flex-col'>
+
+                    <div className='text-[40px] font-semibold'>
+                        <h3>{data.title}</h3>
+                    </div>
+
+                    <div className='flex gap-6 mt-10'>
+
+                        <div className='w-37.5 h-30 flex flex-col gap-2 justify-center'>
+                            <h1 className='font-bold text-3xl'>Medium</h1>
+
+                            <h3 className='font-semibold'>{data.medium}</h3>
+                        </div>
+
+                        <div className='w-37.5 h-30 flex flex-col gap-2 justify-center'>
+                            <h1 className='font-bold text-3xl'>Artist</h1>
+
+                            <h3 className='font-semibold'>{data.artistName}</h3>
+                        </div>
+
+                             <div className='w-37.5 h-30 flex flex-col gap-2 justify-center'>
+                            
+                            <ThumbsUp className='cursor-pointer  text-blue-700'></ThumbsUp>
+
+                            <h3 className='font-semibold'>Like</h3>
+                        </div>
+                    </div>
+                    
+                    <NavLink className='text-green-600 font-bold text-3xl' to={`/artistInfo/${data._id}`}>About Artist</NavLink>
+                </div>
+           </div>
+
+           <h1 className='font-semibold text-2xl mb-6 mt-6'>Description</h1>
+           <p className='mb-6 text-[#627382 text-[20px]]'>{data.description}</p>
+
+           <div className='flex justify-center items-center max-sm:justify-start'><button onClick={()=>navigate(-1)} class="btn bg-linear-to-r from-[#632EE3] to-[#9F62F2] w-50 h-12.5 font-bold text-[20px] text-white">Go Back</button></div>
+
+        </div>
+     </>
+  )
+}
+
+export default ArtDetails
