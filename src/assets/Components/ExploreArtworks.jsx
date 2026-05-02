@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLoaderData, useNavigate } from 'react-router'
+import { AuthContext } from './AuthContext'
 
 const ExploreArtworks = () => {
 

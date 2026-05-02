@@ -1,4 +1,5 @@
 import React from 'react'
+import artImage from '../Components/Images/arts.png'
 
 const Footer = () => {
 
@@ -19,7 +20,7 @@ const Footer = () => {
         <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
   <aside>
 
-      <img src="./arts.png" alt="logo" className='w-13 h-13' />
+      <img src={artImage} alt="logo" className='w-13 h-13' />
    
     <p>
       <span className='text-4xl font-serif font-extrabold'>Artify</span>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLoaderData, useNavigate } from 'react-router'
+import { AuthContext } from './AuthContext'
 
 const ArtistInfo = () => {
     const artistData = useLoaderData()
@@ -7,7 +8,7 @@ const ArtistInfo = () => {
 
   return (
     <div className='text-center mt-20 font-semibold max-sm:text-left max-sm:ml-4'>
-        <div className='flex justify-center items-center max-sm:justify-start'>
+        <div style={{display: artistData.artistImage ? "flex" : "none"}} className='justify-center items-center max-sm:justify-start'>
           <img className='h-70 w-70 rounded-[50%]' src={artistData.artistImage} alt="image of the artist" />
           </div>
 

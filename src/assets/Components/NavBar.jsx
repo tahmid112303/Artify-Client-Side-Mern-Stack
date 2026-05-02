@@ -3,6 +3,8 @@ import { NavLink, useNavigate } from 'react-router'
 import { AuthContext } from './AuthContext'
 import { toast } from 'react-toastify'
 import { Moon, Sun } from 'lucide-react'
+import artImage from '../Components/Images/arts.png'
+
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -44,7 +46,7 @@ const Navbar = () => {
     </div>
         <div className='flex justify-center items-center gap-2 ml-10'>
             <p className='text-4xl font-serif font-extrabold'>Artify</p>
-            <img className='w-13 h-13' src="./arts.png" alt="logo" />
+            <img className='w-13 h-13' src={artImage} alt="logo" />
         </div>
   </div>
   <div className="navbar-center hidden lg:flex max-sm:flex-col">
@@ -59,12 +61,11 @@ const Navbar = () => {
     {user ? <div className="dropdown dropdown-end dropdown-hover mr-10">
         <div tabIndex={0} role="button" className="m-1 rounded-[50%] w-13 h-13">
           <img className='w-full h-full rounded-[50%] cursor-pointer' 
-          key={user?.photoURL}
-          src={user.photoURL} alt="pic" />
+          src={user?.photoURL} alt="pic" />
           </div>
 
         <ul tabIndex="-1" style={{background: theme === "dark" ? "white" : "plum", color: theme === "dark" && "black"}} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm font-bold text-[18px]">
-          <li><a onClick={()=>navigate('/')}>{user.displayName}</a></li>
+          <li><a onClick={()=>navigate('/')}>{user?.displayName}</a></li>
           <li><a onClick={handleSignOut}>Log Out</a></li>
         </ul>
       </div> : <a onClick={()=>navigate('/login')} className="btn btn-primary 

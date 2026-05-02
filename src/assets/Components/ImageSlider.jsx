@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import image1 from '../Components/Images/img1.jpg'
+import image2 from '../Components/Images/img2.webp'
+import image3 from '../Components/Images/img3.jpg'
 
-const slides = ['./img1.jpg','./img2.webp','./img3.jpg'];
+const slides = [image1,image2,image3];
 
 const ImageSlider = () => {
 

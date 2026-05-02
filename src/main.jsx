@@ -29,7 +29,7 @@ const router=createBrowserRouter([
         loader: () => fetch("http://localhost:3000/arts"),
         Component: ExploreArtworks },
       { path: 'add', element: <PrivateRoute><AddArtwork></AddArtwork></PrivateRoute> }, 
-      { path: 'gallery', element: <PrivateRoute><MyGallery></MyGallery></PrivateRoute> }, 
+      { path: 'gallery', element: <PrivateRoute><MyGallery></MyGallery></PrivateRoute>}, 
       { path: 'favorites', element: <PrivateRoute><MyFavorites></MyFavorites></PrivateRoute> }, 
       { path: 'login', Component: Login },
       { path: 'reg', Component: Register },
