@@ -1,14 +1,16 @@
-import React from 'react'
-import { useLoaderData, useNavigate } from 'react-router'
+import React, { useContext } from 'react'
+import { Link, useLoaderData, useNavigate } from 'react-router'
 import { AuthContext } from './AuthContext'
 
 const ExploreArtworks = () => {
 
     const arts = useLoaderData()
+    const {theme} = useContext(AuthContext)
     const navigate = useNavigate()
 
   return (
-            <div className='mt-20 mb-20 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 m-auto w-fit max-sm:ml-4'>
+      <>
+          <div className='mt-20 mb-20 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 m-auto w-fit max-sm:ml-4'>
             {arts.map(art =>  <div key={art._id} className="card bg-[#bed9ed] text-black w-96 max-sm:w-80 h-auto shadow-sm">
   <figure className="px-10 pt-10">
     <img
@@ -28,8 +30,12 @@ const ExploreArtworks = () => {
     </div>
   </div>
 </div>)}
+    </div>
 
-        </div>
+        <div style={{color: theme === "dark" ? "whitesmoke" : "green"}} className='mt-6 mb-6 flex justify-center items-center'>
+              <Link to='/' className='font-bold text-2xl underline'>Go to Home Page</Link>
+      </div>
+      </>
   )
 }
 

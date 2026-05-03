@@ -1,9 +1,11 @@
-import React from 'react'
-import { useLoaderData, useNavigate } from 'react-router'
+import React, { use } from 'react'
+import { Link, useLoaderData, useNavigate } from 'react-router'
 import ImageSlider from './ImageSlider'
+import { AuthContext } from './AuthContext'
 
 const Home = () => {
   const data = useLoaderData()
+  const {theme} = use(AuthContext)
   const navigate = useNavigate()
 
   return (
@@ -30,7 +32,11 @@ const Home = () => {
     </div>
   </div>
 </div>)}
-        </div>
+      </div>
+
+      <div style={{color: theme === "dark" ? "whitesmoke" : "green"}} className='mt-6 mb-6 flex justify-center items-center'>
+              <Link to='/explore' className='font-bold text-2xl underline'>View All Arts</Link>
+      </div>
     </>
   )
 }
