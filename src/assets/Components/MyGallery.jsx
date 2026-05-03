@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from 'react'
 import { AuthContext } from './AuthContext'
 import { useNavigate } from 'react-router'
-import { toast } from 'react-toastify'
+import Swal from 'sweetalert2'
 
 
 const MyGallery = () => {
@@ -20,18 +20,33 @@ const MyGallery = () => {
   },[user?.email])
 
   const handleDeleteArt = (id) => {
-    fetch(`http://localhost:3000/arts/${id}`, {
-      method: "DELETE"
-    })
-    .then(res=>res.json())
-    .then(data=>{
-      console.log(data)
-      if(data.deletedCount){
-        const remainingArts = arts.filter(art => art._id !== id)
-        setArts(remainingArts)
-        toast("Deleted successfully")
-      }
-    })
+       Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result)=>{
+            if(result.isConfirmed){
+              fetch(`http://localhost:3000/arts/${id}`,{
+                method: "DELETE"
+              }).then(res=>res.json())
+              .then(data=>{
+                if(data.deletedCount){
+                     Swal.fire({
+                      title: "Deleted!",
+                      text: "Your art has been deleted.",
+                      icon: "success"
+                  })
+
+                  const remainingArts = arts.filter(art => art._id !== id)
+                  setArts(remainingArts)
+                }
+              })
+            }
+          })
   }
 
   return (
@@ -51,7 +66,7 @@ const MyGallery = () => {
       className="rounded-xl h-55 w-100" />
   </figure>
   <div className="card-body items-center text-center">
-    <h2 className="card-title">{art.title}</h2>
+    <h2 className="card-title text-3xl font-bold">{art.title}</h2>
         <div className='flex flex-col gap-5 mt-10'>
             <p>Artist: <span className='font-bold'>{art.artistName}</span></p>
 

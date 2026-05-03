@@ -19,7 +19,7 @@ const Home = () => {
       className="rounded-xl h-55 w-100" />
   </figure>
   <div className="card-body items-center text-center">
-    <h2 className="card-title">{art.title}</h2>
+    <h2 className="card-title font-bold text-3xl">{art.title}</h2>
         <div className='flex flex-col gap-5 mt-10'>
             <p>Artist: <span className='font-bold'>{art.artistName}</span></p>
 
