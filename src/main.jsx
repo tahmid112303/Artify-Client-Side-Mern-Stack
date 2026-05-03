@@ -16,6 +16,7 @@ import Register from './assets/Components/Register.jsx';
 import AuthProvider from './assets/Components/AuthProvider.jsx';
 import ArtDetails from './assets/Components/ArtDetails.jsx';
 import ArtistInfo from './assets/Components/ArtistInfo.jsx';
+import EditArt from './assets/Components/EditArt.jsx';
 
 const router=createBrowserRouter([
   {
@@ -39,6 +40,9 @@ const router=createBrowserRouter([
       { path: 'artistInfo/:id', 
         loader: ({params}) => fetch(`http://localhost:3000/arts/${params.id}`),
         element: <PrivateRoute><ArtistInfo></ArtistInfo></PrivateRoute> },
+      { path: 'editArt/:id', 
+        loader: ({params}) => fetch(`http://localhost:3000/arts/${params.id}`),
+        element: <PrivateRoute><EditArt></EditArt></PrivateRoute> },
       
     ], 
   },

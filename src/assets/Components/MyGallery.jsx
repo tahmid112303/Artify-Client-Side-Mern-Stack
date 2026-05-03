@@ -79,7 +79,7 @@ const MyGallery = () => {
     <div className='flex justify-between w-full mt-4'>
           <button onClick={()=>handleDeleteArt(art._id)} className='btn btn-primary'>Delete</button>
 
-          <button className='btn'>Update</button>
+          <button onClick={()=>navigate(`/editArt/${art._id}`)} className='btn'>Update</button>
     </div>
   </div>
 </div>)}
