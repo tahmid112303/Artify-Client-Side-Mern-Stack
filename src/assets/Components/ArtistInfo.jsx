@@ -6,7 +6,7 @@ const ArtistInfo = () => {
     const artistData = useLoaderData()
     const navigate = useNavigate()
     const {user} = use(AuthContext)
-    const [arts,setArts] = useState([])
+    const [arts,setArts] = useState(artistData)
 
       useEffect(()=>{
           if(user?.email){

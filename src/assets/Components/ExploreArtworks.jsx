@@ -7,26 +7,34 @@ const ExploreArtworks = () => {
     const data = useLoaderData()
     const {theme} = useContext(AuthContext)
     const [arts,setArts] = useState(data)
+    const [loading,setLoading] = useState(false)
     const navigate = useNavigate()
 
     function handleSearch(e){
         e.preventDefault()
+        setLoading(true)
         const search_item = e.target.search_item.value
         fetch(`http://localhost:3000/arts/search?title=${search_item}`)
         .then(res=>res.json())
         .then(data=>{
-          console.log(data)
-          e.target.reset()
-          setArts(data)
+            setArts(data)
+            setLoading(false)
+            e.target.reset()
         })
+    }
+
+    if(loading){
+      return <div className='flex justify-center items-center'>
+            <span className="loading loading-bars loading-xl"></span>
+        </div>
     }
 
   return (
       <>
 
-        <h1 className='font-bold text-5xl text-center mt-10'>All Arts</h1>
+        <h1 className='font-bold text-5xl text-center mt-10 max-sm:text-left max-sm:ml-4'>All Arts</h1>
 
-        <form onSubmit={handleSearch} className='flex gap-2 justify-center items-center mt-10'>
+        <form onSubmit={handleSearch} className='flex gap-2 justify-center items-center mt-10 max-sm:flex-col max-sm:items-start max-sm:ml-4'>
               <label className="input rounded-full">
               <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <g
@@ -68,7 +76,7 @@ const ExploreArtworks = () => {
 </div>)}
     </div>
 
-        <div style={{color: theme === "dark" ? "whitesmoke" : "green"}} className='mt-6 mb-6 flex justify-center items-center'>
+        <div style={{color: theme === "dark" ? "whitesmoke" : "green"}} className='mt-6 mb-6 flex justify-center items-center max-sm:text-left max-sm:justify-start max-sm:ml-4'>
               <Link to='/' className='font-bold text-2xl underline'>Go to Home Page</Link>
       </div>
       </>

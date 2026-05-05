@@ -66,7 +66,7 @@ const ArtDetails = () => {
                             
                             <ThumbsUp onClick={()=>handleLike(data._id)} className='cursor-pointer  text-blue-700'></ThumbsUp>
 
-                            <h3 className='font-semibold'>Like</h3>
+                            <h3 className='font-semibold'>{data.likes === art.likes ? "Like" : "Unlike"}</h3>
 
                         </div>
                     </div>

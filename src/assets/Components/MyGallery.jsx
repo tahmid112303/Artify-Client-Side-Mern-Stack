@@ -51,7 +51,7 @@ const MyGallery = () => {
 
   return (
     <div>
-        <h1 className='text-center font-bold text-5xl mt-10 max-sm:text-left max-sm:ml-4'>Number of Arts added: {arts.length}</h1>
+        <h1 className='text-center font-bold text-5xl mt-10 max-sm:text-left max-sm:ml-4 max-sm:text-3xl'>Number of Arts added: {arts.length}</h1>
 
         <div className='flex justify-center items-center mt-5 max-sm:justify-start max-sm:ml-4'>
             <button onClick={()=>navigate('/add')} className='btn bg-blue-300 w-37.5 h-12.5 font-bold text-2xl'>{arts.length === 0 ? "Add" : "Add More"}</button>
