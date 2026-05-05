@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { AuthContext } from './AuthContext'
 import { updateProfile } from 'firebase/auth'
 import { toast } from 'react-toastify'
@@ -9,6 +9,7 @@ const Register = () => {
     const [showPassword,setShowPassword]=useState(false)
     const [fault,setFault] = useState('')
     const [success,setSuccess] = useState(false)
+    const navigate = useNavigate()
     const notify = () => {
         toast("Account Created!");
     }
@@ -28,6 +29,7 @@ const Register = () => {
             setSuccess(true);
             e.target.reset();
             notify()
+            navigate('/')
 
             verifyEmail(result.user)
             .then(()=>{

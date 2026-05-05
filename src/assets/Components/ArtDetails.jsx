@@ -7,30 +7,36 @@ import { use } from 'react'
 const ArtDetails = () => {
     const data = useLoaderData()
     const navigate = useNavigate()
-    const [art,setArt] = useState(data)
     const {user} = use(AuthContext)
+     const [art, setArt] = useState({...data,likedBy: data.likedBy || []})
+
+    const alreadyLiked = art?.likedBy?.includes(user?.email);
 
     const handleLike = (id) => {
-        fetch(`http://localhost:3000/arts/${id}/like`, {
-            method: "PATCH",
-            headers: {
-            "content-type": "application/json",
-            },
-            body: JSON.stringify({ email: user?.email }),
-        }).then((res) => res.json())
-            .then((data) => {
-            if (data.modifiedCount) {
-                const alreadyLiked = art.likedBy?.includes(user.email);
-                setArt({
-                ...art,
-                likes: alreadyLiked ? art.likes - 1 : art.likes + 1,
-                likedBy: alreadyLiked
-                    ? art.likedBy.filter((e) => e !== user.email)
-                    : [...art.likedBy, user.email],
-                });
-            }
-            });
-        };
+    fetch(`http://localhost:3000/arts/${id}/like`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ email: user?.email }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          setArt((prev) => {
+            const liked = prev.likedBy.includes(user.email);
+
+            return {
+              ...prev,
+              likes: liked ? prev.likes - 1 : prev.likes + 1,
+              likedBy: liked
+                ? prev.likedBy.filter((e) => e !== user.email)
+                : [...prev.likedBy, user.email],
+            };
+          });
+        }
+      });
+  };
 
   return (
      <>
@@ -66,7 +72,7 @@ const ArtDetails = () => {
                             
                             <ThumbsUp onClick={()=>handleLike(data._id)} className='cursor-pointer  text-blue-700'></ThumbsUp>
 
-                            <h3 className='font-semibold'>{data.likes === art.likes ? "Like" : "Unlike"}</h3>
+                            <h3 className='font-semibold'>{alreadyLiked ? "Unlike" : "Like"}</h3>
 
                         </div>
                     </div>
