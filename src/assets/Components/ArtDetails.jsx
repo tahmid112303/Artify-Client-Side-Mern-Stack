@@ -1,10 +1,36 @@
 import { ThumbsUp } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink, useLoaderData, useNavigate } from 'react-router'
+import { AuthContext } from './AuthContext'
+import { use } from 'react'
 
 const ArtDetails = () => {
     const data = useLoaderData()
     const navigate = useNavigate()
+    const [art,setArt] = useState(data)
+    const {user} = use(AuthContext)
+
+    const handleLike = (id) => {
+        fetch(`http://localhost:3000/arts/${id}/like`, {
+            method: "PATCH",
+            headers: {
+            "content-type": "application/json",
+            },
+            body: JSON.stringify({ email: user?.email }),
+        }).then((res) => res.json())
+            .then((data) => {
+            if (data.modifiedCount) {
+                const alreadyLiked = art.likedBy?.includes(user.email);
+                setArt({
+                ...art,
+                likes: alreadyLiked ? art.likes - 1 : art.likes + 1,
+                likedBy: alreadyLiked
+                    ? art.likedBy.filter((e) => e !== user.email)
+                    : [...art.likedBy, user.email],
+                });
+            }
+            });
+        };
 
   return (
      <>
@@ -35,10 +61,13 @@ const ArtDetails = () => {
                         </div>
 
                              <div className='w-37.5 h-30 flex flex-col gap-2 justify-center'>
+
+                            <h2 className='font-semibold'>{art.likes}</h2>
                             
-                            <ThumbsUp className='cursor-pointer  text-blue-700'></ThumbsUp>
+                            <ThumbsUp onClick={()=>handleLike(data._id)} className='cursor-pointer  text-blue-700'></ThumbsUp>
 
                             <h3 className='font-semibold'>Like</h3>
+
                         </div>
                     </div>
                     

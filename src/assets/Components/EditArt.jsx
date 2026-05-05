@@ -40,7 +40,7 @@ const EditArt = () => {
   return (
     <div className='mt-20 mb-20'>
         <form onSubmit={handleUpdateArt}>
-          <fieldset style={{background: theme === "dark" && "purple"}} className="fieldset bg-cyan-200 mx-auto border-base-300 rounded-box w-xs border p-4">
+          <fieldset style={{background: theme === "dark" && "purple"}} className="fieldset bg-cyan-200 mx-auto border-base-300 rounded-box w-xs border p-4 max-sm:ml-4">
 
           <h2 className='text-2xl text-center font-bold'>Update Artwork</h2>
 

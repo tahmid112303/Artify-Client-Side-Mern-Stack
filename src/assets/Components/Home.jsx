@@ -11,6 +11,8 @@ const Home = () => {
   return (
     <>
     <ImageSlider></ImageSlider>
+
+    <h1 className='text-center text-5xl text-blue-800 font-bold mt-10'>Trending Arts</h1>
         
   <div className='mt-20 mb-20 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 m-auto w-fit max-sm:ml-4'>
             {data.map(art => <div key={art._id} className="card bg-[#bed9ed] text-black w-96 max-sm:w-80 h-auto shadow-sm">

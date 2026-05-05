@@ -18,8 +18,9 @@ const AddArtwork = () => {
     const artistName = e.target.artistName.value;
     const artistEmail = e.target.artistEmail.value
     const artistImage = e.target.artistImage.value;
+    const createdAt = new Date()
 
-    const newArt = {image,title,category,medium,description,artistName,artistEmail,artistImage}
+    const newArt = {image,title,category,medium,description,artistName,artistEmail,artistImage,createdAt}
 
     fetch("http://localhost:3000/arts", {
         method: "POST",
@@ -42,7 +43,7 @@ const AddArtwork = () => {
   return (
     <div className='mt-20 mb-20'>
         <form onSubmit={handleAddArtwork}>
-          <fieldset style={{background: theme === "dark" && "purple"}} className="fieldset bg-base-200 mx-auto border-base-300 rounded-box w-xs border p-4">
+          <fieldset style={{background: theme === "dark" && "purple"}} className="fieldset bg-gray-300 mx-auto border-base-300 rounded-box w-xs border p-4 max-sm:ml-4">
 
           <h2 className='text-2xl text-center font-bold'>Add Artwork</h2>
 
@@ -66,10 +67,10 @@ const AddArtwork = () => {
           </textarea>
 
           <label className="label">User Name</label>
-          <input type="text" name='artistName' className="input" defaultValue={user?.displayName} />
+          <input type="text" name='artistName' className="input" defaultValue={user?.displayName} disabled/>
 
           <label className="label">User Email</label>
-          <input type="email" name='artistEmail' className="input" defaultValue={user?.email} />
+          <input type="email" name='artistEmail' className="input" defaultValue={user?.email} disabled/>
 
           <button className='btn btn-secondary w-full font-bold
            text-[1.5em] mt-6'>Add Artwork</button>
