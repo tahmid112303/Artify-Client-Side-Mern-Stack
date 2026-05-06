@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from './AuthContext'
+import { toast } from 'react-toastify'
 
 
 const MyFavorites = () => {
@@ -16,6 +17,20 @@ const MyFavorites = () => {
           })
         }
     },[user?.email])
+
+    const handleDeleteFavoriteArt = (id) => {
+        fetch(`http://localhost:3000/favorites/${id}`,{
+          method: "DELETE"
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.deletedCount){
+               toast("Removed from My Favorites")
+               const remaining = fav.filter(x => x._id !== id)
+               setFav(remaining)
+            }
+        })
+    }
 
   return (
       <>
@@ -37,7 +52,7 @@ const MyFavorites = () => {
             <p>Category: <span className='font-bold'>{art.category}</span></p>
         </div>
     <div className="card-actions w-full mt-10">
-      <button className="btn btn-primary w-full">Details</button>
+      <button onClick={()=>handleDeleteFavoriteArt(art._id)} className="btn btn-primary w-full">Unfavorite</button>
     </div>
   </div>
 </div>)}

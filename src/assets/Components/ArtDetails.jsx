@@ -57,9 +57,9 @@ const ArtDetails = () => {
         .then(res => res.json())
         .then(data => {
           if (data.insertedId) {
-            toast("Added to Favorite List");
+            toast("Added to My Favorites");
           } else if (data.message) {
-            toast("Already in favorites");
+            toast("Already in My Favorites");
           }
         });
 };
