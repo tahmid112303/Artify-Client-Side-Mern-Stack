@@ -1,14 +1,15 @@
-import { ThumbsUp } from 'lucide-react'
+import { Star, ThumbsDown, ThumbsUp } from 'lucide-react'
 import React, { useState } from 'react'
 import { NavLink, useLoaderData, useNavigate } from 'react-router'
 import { AuthContext } from './AuthContext'
 import { use } from 'react'
+import { toast } from 'react-toastify'
 
 const ArtDetails = () => {
-    const data = useLoaderData()
+    const data  = useLoaderData()
     const navigate = useNavigate()
     const {user} = use(AuthContext)
-     const [art, setArt] = useState({...data,likedBy: data.likedBy || []})
+    const [art, setArt] = useState({...data,likedBy: data.likedBy || []})
 
     const alreadyLiked = art?.likedBy?.includes(user?.email);
 
@@ -38,6 +39,31 @@ const ArtDetails = () => {
       });
   };
 
+  const handleFavorite = () => {
+      fetch('http://localhost:3000/favorites', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          artId: data._id,
+          image: data.image,
+          title: data.title,
+          category: data.category,
+          artistName: data.artistName,
+          favorite_by: user.email
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.insertedId) {
+            toast("Added to Favorite List");
+          } else if (data.message) {
+            toast("Already in favorites");
+          }
+        });
+};
+
   return (
      <>
          <div className='my-21 mx-20 max-sm:mx-5'>
@@ -66,14 +92,19 @@ const ArtDetails = () => {
                             <h3 className='font-semibold'>{data.artistName}</h3>
                         </div>
 
-                             <div className='w-37.5 h-30 flex flex-col gap-2 justify-center'>
+                        <div className='w-37.5 h-30 flex flex-col gap-2 justify-center'>
 
                             <h2 className='font-semibold'>{art.likes}</h2>
                             
-                            <ThumbsUp onClick={()=>handleLike(data._id)} className='cursor-pointer  text-blue-700'></ThumbsUp>
+                            {alreadyLiked ? <ThumbsDown onClick={()=>handleLike(data._id)} className='cursor-pointer  text-blue-700'></ThumbsDown> : <ThumbsUp onClick={()=>handleLike(data._id)} className='cursor-pointer  text-blue-700'></ThumbsUp>}
 
                             <h3 className='font-semibold'>{alreadyLiked ? "Unlike" : "Like"}</h3>
+                        </div>
 
+                        <div className='w-37.5 h-30 flex flex-col gap-2 justify-center'>
+                            <Star onClick={handleFavorite} className='cursor-pointer'></Star>
+
+                            <h3>Favorite</h3>
                         </div>
                     </div>
                     

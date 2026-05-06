@@ -33,7 +33,7 @@ const Navbar = () => {
 
   return (
 <div className="navbar bg-base-100 shadow-sm">
-  <div className="navbar-start max-sm:w-150">
+  <div className="navbar-start max-sm:w-50">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
@@ -44,9 +44,9 @@ const Navbar = () => {
           {links}
       </ul>
     </div>
-        <div className='flex justify-center items-center gap-2 ml-10'>
-            <p className='text-4xl font-serif font-extrabold'>Artify</p>
-            <img className='w-13 h-13' src={artImage} alt="logo" />
+        <div className='flex justify-center items-center gap-2 ml-10 max-sm:ml-2'>
+            <p className='text-4xl font-serif font-extrabold max-sm:text-2xl'>Artify</p>
+            <img className='w-13 h-13 max-sm:w-9 max-sm:h-9' src={artImage} alt="logo" />
         </div>
   </div>
   <div className="navbar-center hidden lg:flex max-sm:flex-col">
@@ -56,9 +56,9 @@ const Navbar = () => {
   </div>
   <div className="navbar-end">
 
-    {theme === "dark" ? <Sun onClick={changeTheme} className='mr-6 cursor-pointer'></Sun> : <Moon onClick={changeTheme} className='mr-6 cursor-pointer'></Moon>}
+    {theme === "dark" ? <Sun onClick={changeTheme} className='mr-6 cursor-pointer max-sm:mr-3 '></Sun> : <Moon onClick={changeTheme} className='mr-6 cursor-pointer max-sm:mr-2'></Moon>}
 
-    {user ? <div className="dropdown dropdown-end dropdown-hover mr-10">
+    {user ? <div className="dropdown dropdown-end dropdown-hover mr-10 max-sm:mr-30">
         <div tabIndex={0} role="button" className="m-1 rounded-[50%] w-13 h-13">
           <img className='w-full h-full rounded-[50%] cursor-pointer' 
           src={user?.photoURL} alt="pic" />
