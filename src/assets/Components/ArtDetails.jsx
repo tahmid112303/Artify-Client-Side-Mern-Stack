@@ -10,7 +10,6 @@ const ArtDetails = () => {
     const navigate = useNavigate()
     const {user} = use(AuthContext)
     const [art, setArt] = useState({...data,likedBy: data.likedBy || []})
-
     const alreadyLiked = art?.likedBy?.includes(user?.email);
 
     const handleLike = (id) => {
@@ -102,7 +101,7 @@ const ArtDetails = () => {
                         </div>
 
                         <div className='w-37.5 h-30 flex flex-col gap-2 justify-center'>
-                            <Star onClick={handleFavorite} className='cursor-pointer'></Star>
+                            <Star onClick={handleFavorite} className='cursor-pointer fill-orange-600 text-orange-600'></Star>
 
                             <h3>Favorite</h3>
                         </div>
