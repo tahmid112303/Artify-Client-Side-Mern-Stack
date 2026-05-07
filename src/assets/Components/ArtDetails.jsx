@@ -95,7 +95,7 @@ const ArtDetails = () => {
 
                             <h2 className='font-semibold'>{art.likes}</h2>
                             
-                            {alreadyLiked ? <ThumbsDown onClick={()=>handleLike(data._id)} className='cursor-pointer  text-blue-700'></ThumbsDown> : <ThumbsUp onClick={()=>handleLike(data._id)} className='cursor-pointer  text-blue-700'></ThumbsUp>}
+                            {alreadyLiked ? <ThumbsDown onClick={()=>handleLike(data._id)} className='cursor-pointer fill-blue-700  text-blue-700'></ThumbsDown> : <ThumbsUp onClick={()=>handleLike(data._id)} className='cursor-pointer fill-blue-700  text-blue-700'></ThumbsUp>}
 
                             <h3 className='font-semibold'>{alreadyLiked ? "Unlike" : "Like"}</h3>
                         </div>
