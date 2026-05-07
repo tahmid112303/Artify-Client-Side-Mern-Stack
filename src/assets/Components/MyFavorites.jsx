@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from './AuthContext'
-import { toast } from 'react-toastify'
+import Swal from 'sweetalert2'
 
 
 const MyFavorites = () => {
@@ -19,17 +19,48 @@ const MyFavorites = () => {
     },[user?.email])
 
     const handleDeleteFavoriteArt = (id) => {
-        fetch(`http://localhost:3000/favorites/${id}`,{
-          method: "DELETE"
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.deletedCount){
-               toast("Removed from My Favorites")
-               const remaining = fav.filter(x => x._id !== id)
-               setFav(remaining)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, remove it!"
+        }).then((result)=>{
+            if(result.isConfirmed){
+              fetch(`http://localhost:3000/favorites/${id}`,{
+                method: "DELETE"
+              }).then(res=>res.json())
+              .then(data=>{
+                  if(data.deletedCount){
+                    Swal.fire({
+                    title: "Unfavorited",
+                    text: "Your art has been removed from My Favorites.",
+                    icon: "success"
+                  })
+                  
+                  const remaining = fav.filter(x => x._id !== id)
+                  setFav(remaining)
+                }
+              })
             }
         })
+
+
+
+
+        // fetch(`http://localhost:3000/favorites/${id}`,{
+        //   method: "DELETE"
+        // })
+        // .then(res=>res.json())
+        // .then(data=>{
+        //     if(data.deletedCount){
+        //        toast("Removed from My Favorites")
+        //        const remaining = fav.filter(x => x._id !== id)
+        //        setFav(remaining)
+        //     }
+        // })
     }
 
   return (
