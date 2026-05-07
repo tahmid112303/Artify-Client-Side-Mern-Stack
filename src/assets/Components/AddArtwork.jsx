@@ -32,7 +32,7 @@ const AddArtwork = () => {
     .then(res=>res.json())
     .then(data=>{ 
       if(data.insertedId){
-        newArt._id = data.insertedId;
+        newArt._id = data.insertedId
         e.target.reset();
         toast("New art added")
         navigate('/explore')
