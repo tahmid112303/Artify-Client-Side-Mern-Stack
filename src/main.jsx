@@ -17,11 +17,13 @@ import AuthProvider from './assets/Components/AuthProvider.jsx';
 import ArtDetails from './assets/Components/ArtDetails.jsx';
 import ArtistInfo from './assets/Components/ArtistInfo.jsx';
 import EditArt from './assets/Components/EditArt.jsx';
+import ServerError from './assets/Components/ErrorLayout/ServerError.jsx';
 
 const router=createBrowserRouter([
   {
     path: "/",
     Component: Root,
+    errorElement: <ServerError></ServerError>,
     children: [
       { index: true, 
         loader: () => fetch("http://localhost:3000/artsHome"),
