@@ -54,11 +54,12 @@ const Navbar = () => {
         {links}
     </ul>
   </div>
-  <div className="navbar-end">
+  <div className="navbar-end flex justify-center gap-10 max-sm:justify-start max-sm:ml-5 max-sm:mr-2">
+    <div>
+        {theme === "dark" ? <Sun onClick={changeTheme} className='mr-6 cursor-pointer'></Sun> : <Moon onClick={changeTheme} className='mr-6 cursor-pointer'></Moon>}
+    </div>
 
-    {theme === "dark" ? <Sun onClick={changeTheme} className='mr-6 cursor-pointer max-sm:mr-5'></Sun> : <Moon onClick={changeTheme} className='mr-6 cursor-pointer max-sm:mr-5'></Moon>}
-
-    {user ? <div className="dropdown dropdown-end dropdown-hover mr-10 max-sm:mr-20">
+    {user ? <div className="dropdown dropdown-end dropdown-hover">
         <div tabIndex={0} role="button" className="m-1 rounded-[50%] w-13 h-13">
           <img className='w-full h-full rounded-[50%] cursor-pointer' 
           src={user?.photoURL} alt="pic" />
@@ -69,7 +70,7 @@ const Navbar = () => {
           <li><a onClick={handleSignOut}>Log Out</a></li>
         </ul>
       </div> : <a onClick={()=>navigate('/login')} className="btn btn-primary 
-    font-bold mr-10 max-sm:mr-20 max-sm:rounded-3xl 
+    font-bold max-sm:rounded-3xl 
     max-sm:text-[0.7em]">Sign In</a>}
   </div>
 </div>
