@@ -58,7 +58,7 @@ const Navbar = () => {
 
     {theme === "dark" ? <Sun onClick={changeTheme} className='mr-6 cursor-pointer max-sm:mr-5'></Sun> : <Moon onClick={changeTheme} className='mr-6 cursor-pointer max-sm:mr-5'></Moon>}
 
-    {user ? <div className="dropdown dropdown-end dropdown-hover mr-10 max-sm:mr-30">
+    {user ? <div className="dropdown dropdown-end dropdown-hover mr-10 max-sm:mr-20">
         <div tabIndex={0} role="button" className="m-1 rounded-[50%] w-13 h-13">
           <img className='w-full h-full rounded-[50%] cursor-pointer' 
           src={user?.photoURL} alt="pic" />
