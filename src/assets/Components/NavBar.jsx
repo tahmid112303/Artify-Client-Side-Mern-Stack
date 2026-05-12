@@ -54,7 +54,8 @@ const Navbar = () => {
         {links}
     </ul>
   </div>
-  <div className="navbar-end flex justify-center gap-10 max-sm:justify-start max-sm:ml-5 max-sm:mr-2">
+
+  <div className="navbar-end flex justify-center gap-10 max-sm:justify-start max-sm:ml-5 max-sm:mr-5">
     <div>
         {theme === "dark" ? <Sun onClick={changeTheme} className='mr-6 cursor-pointer'></Sun> : <Moon onClick={changeTheme} className='mr-6 cursor-pointer'></Moon>}
     </div>
@@ -73,6 +74,7 @@ const Navbar = () => {
     font-bold max-sm:rounded-3xl 
     max-sm:text-[0.7em]">Sign In</a>}
   </div>
+
 </div>
   )
 }
