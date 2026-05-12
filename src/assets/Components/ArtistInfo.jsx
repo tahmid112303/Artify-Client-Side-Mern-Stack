@@ -10,7 +10,7 @@ const ArtistInfo = () => {
 
   useEffect(() => {
     if (artistData?.artistEmail) {
-      fetch(`http://localhost:3000/arts?email=${artistData.artistEmail}`)
+      fetch(`https://artify-server-side.onrender.com/arts?email=${artistData.artistEmail}`)
         .then(res => res.json())
         .then(data => {
           setArts(data)

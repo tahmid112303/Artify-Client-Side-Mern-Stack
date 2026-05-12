@@ -9,10 +9,9 @@ const MyFavorites = () => {
 
     useEffect(()=>{
         if(user?.email){
-          fetch(`http://localhost:3000/favorites?fav=${user.email}`)
+          fetch(`https://artify-server-side.onrender.com/favorites?fav=${user.email}`)
           .then(res=>res.json())
           .then(data=>{
-              console.log(data)
               setFav(data)
           })
         }
@@ -29,7 +28,7 @@ const MyFavorites = () => {
             confirmButtonText: "Yes, remove it!"
         }).then((result)=>{
             if(result.isConfirmed){
-              fetch(`http://localhost:3000/favorites/${id}`,{
+              fetch(`https://artify-server-side.onrender.com/favorites/${id}`,{
                 method: "DELETE"
               }).then(res=>res.json())
               .then(data=>{
@@ -50,7 +49,7 @@ const MyFavorites = () => {
 
 
 
-        // fetch(`http://localhost:3000/favorites/${id}`,{
+        // fetch(`https://artify-server-side.onrender.com/favorites/${id}`,{
         //   method: "DELETE"
         // })
         // .then(res=>res.json())

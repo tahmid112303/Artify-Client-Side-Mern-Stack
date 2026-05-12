@@ -17,11 +17,11 @@ const EditArt = () => {
         const description = e.target.description.value;
         const artistImage = e.target.artistImage.value;
 
-        console.log(image,title,category,medium,artistImage,description)
+        
 
         const updatedArt = {image,title,category,medium,artistImage,description}
 
-        fetch(`http://localhost:3000/arts/${data._id}`, {
+        fetch(`https://artify-server-side.onrender.com/arts/${data._id}`, {
              method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

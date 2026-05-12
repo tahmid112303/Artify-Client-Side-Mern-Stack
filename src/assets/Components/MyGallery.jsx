@@ -11,7 +11,7 @@ const MyGallery = () => {
   
   useEffect(()=>{
       if(user?.email){
-        fetch(`http://localhost:3000/arts?email=${user.email}`)
+        fetch(`https://artify-server-side.onrender.com/arts?email=${user.email}`)
         .then(res=>res.json())
         .then(data=>{
           setArts(data)
@@ -30,7 +30,7 @@ const MyGallery = () => {
             confirmButtonText: "Yes, delete it!"
           }).then((result)=>{
             if(result.isConfirmed){
-              fetch(`http://localhost:3000/arts/${id}`,{
+              fetch(`https://artify-server-side.onrender.com/arts/${id}`,{
                 method: "DELETE"
               }).then(res=>res.json())
               .then(data=>{

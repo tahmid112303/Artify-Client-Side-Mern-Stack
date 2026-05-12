@@ -8,13 +8,13 @@ const ExploreArtworks = () => {
     const {theme} = useContext(AuthContext)
     const [arts,setArts] = useState(data)
     const [loading,setLoading] = useState(false)
-    const navigate = useNavigate()
+    const navigate = useNavigate() 
 
     function handleSearch(e){
         e.preventDefault()
         setLoading(true)
         const search_item = e.target.search_item.value
-        fetch(`http://localhost:3000/arts/search?title=${search_item}`)
+        fetch(`https://artify-server-side.onrender.com/arts/search?title=${search_item}`)
         .then(res=>res.json())
         .then(data=>{
             setArts(data)

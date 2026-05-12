@@ -22,7 +22,7 @@ const AddArtwork = () => {
 
     const newArt = {image,title,category,medium,description,artistName,artistEmail,artistImage,createdAt}
 
-    fetch("http://localhost:3000/arts", {
+    fetch("https://artify-server-side.onrender.com/arts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

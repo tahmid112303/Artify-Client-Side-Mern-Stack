@@ -13,7 +13,7 @@ const ArtDetails = () => {
     const alreadyLiked = art?.likedBy?.includes(user?.email);
 
     const handleLike = (id) => {
-    fetch(`http://localhost:3000/arts/${id}/like`, {
+    fetch(`https://artify-server-side.onrender.com/arts/${id}/like`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -39,7 +39,7 @@ const ArtDetails = () => {
   };
 
   const handleFavorite = () => {
-      fetch('http://localhost:3000/favorites', {
+      fetch('https://artify-server-side.onrender.com/favorites', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

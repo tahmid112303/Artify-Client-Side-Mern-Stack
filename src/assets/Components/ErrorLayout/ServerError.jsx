@@ -13,18 +13,12 @@ const ErrorPage = () => {
             </h1>
 
             <p className='text-xl mb-2'>
-                Something went wrong.
+                Server Error
             </p>
 
             <p className='text-gray-600 mb-6'>
                 {error?.message || "Server is not responding"}
             </p>
-
-            <Link to='/'>
-                <button className='bg-black text-white px-5 py-2 rounded-lg'>
-                    Go Home
-                </button>
-            </Link>
 
         </div>
     )

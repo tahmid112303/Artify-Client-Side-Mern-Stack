@@ -15,7 +15,6 @@ const Login = () => {
         toast("Signed in successfully!");
     }
 
-    console.log(location)
     const notify2 = () => {
         toast("Wrong Credentials, Failed to Sign In")
     }
@@ -27,7 +26,7 @@ const Login = () => {
 
         signIn(email,password)
         .then(result=>{
-            console.log(result.user);
+            console.log(result)
             setFault('');
             setSuccess(true);
             e.target.reset();
