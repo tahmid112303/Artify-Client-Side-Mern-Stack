@@ -24,6 +24,7 @@ const Navbar = () => {
 
     const links = <>
         <NavLink to={'/'}>Home</NavLink>
+        <NavLink to={'/about'}>About</NavLink>
         <NavLink to={'/explore'}>Explore Artworks</NavLink>
         <NavLink to={'/add'}>Add Artwork</NavLink>
         <NavLink to={'/gallery'}>My Gallery</NavLink>

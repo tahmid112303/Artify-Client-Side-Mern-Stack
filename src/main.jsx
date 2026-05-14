@@ -18,6 +18,7 @@ import ArtDetails from './assets/Components/ArtDetails.jsx';
 import ArtistInfo from './assets/Components/ArtistInfo.jsx';
 import EditArt from './assets/Components/EditArt.jsx';
 import ServerError from './assets/Components/ErrorLayout/ServerError.jsx';
+import About from './assets/Components/About.jsx';
 
 const router=createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router=createBrowserRouter([
       { index: true, 
         loader: () => fetch("https://artify-server-side.onrender.com/artsHome"),
         Component: Home },
+      { path: 'about', Component: About},
       { path: 'explore',
         loader: () => fetch("https://artify-server-side.onrender.com/arts"),
         Component: ExploreArtworks },

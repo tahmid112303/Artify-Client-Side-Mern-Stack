@@ -52,7 +52,9 @@ const AuthProvider = ({children}) => {
 
         useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
-        if (savedTheme) setTheme(savedTheme);
+        if (savedTheme){
+            setTheme(savedTheme);
+        }
       }, []);
     
         useEffect(() => {
