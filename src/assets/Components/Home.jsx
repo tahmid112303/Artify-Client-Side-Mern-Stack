@@ -1,12 +1,41 @@
-import React, { use } from 'react'
-import { Link, useLoaderData, useNavigate } from 'react-router'
+import React, { use, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router'
 import ImageSlider from './ImageSlider'
 import { AuthContext } from './AuthContext'
+import ServerError from './ErrorLayout/ServerError'
 
 const Home = () => {
-  const data = useLoaderData()
   const {theme} = use(AuthContext)
   const navigate = useNavigate()
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false) 
+
+  useEffect(()=>{
+      fetch("https://artify-server-side.onrender.com/artsHome")
+      .then(res => res.json())
+      .then(data => {
+        setData(data)
+        setLoading(false)
+      })
+      .catch(() => {
+        setError(true)
+        setLoading(false)
+      })
+  },[])
+
+   if (loading) {
+    return (
+      <div className='flex justify-center items-center h-screen gap-8 max-sm:justify-start'>
+        <h2 className='font-bold text-3xl'>Please wait</h2>
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    )
+  }
+
+  if (error) {
+    return <ServerError></ServerError>
+  }
 
   return (
     <>

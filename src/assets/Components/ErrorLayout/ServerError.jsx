@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouteError, Link } from 'react-router'
 
-const ErrorPage = () => {
+const ServerError = () => {
 
     const error = useRouteError()
 
@@ -24,4 +24,4 @@ const ErrorPage = () => {
     )
 }
 
-export default ErrorPage
+export default ServerError

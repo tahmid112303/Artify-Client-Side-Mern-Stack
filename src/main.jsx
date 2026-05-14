@@ -26,9 +26,7 @@ const router=createBrowserRouter([
     Component: Root,
     errorElement: <ServerError></ServerError>,
     children: [
-      { index: true, 
-        loader: () => fetch("https://artify-server-side.onrender.com/artsHome"),
-        Component: Home },
+      { index: true, Component: Home },
       { path: 'about', Component: About},
       { path: 'explore',
         loader: () => fetch("https://artify-server-side.onrender.com/arts"),
